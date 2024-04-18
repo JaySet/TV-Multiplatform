@@ -11,6 +11,9 @@ import com.corner.server.KtorD
 import com.corner.ui.scene.hideProgress
 import com.corner.ui.scene.showProgress
 import org.koin.core.context.startKoin
+import org.slf4j.LoggerFactory
+
+private val log = LoggerFactory.getLogger("Init")
 
 class Init {
     companion object {
@@ -45,6 +48,7 @@ fun initConfig() {
     try {
         parseConfig(siteConfig, false)?.init()
     } catch (e: Exception) {
+        log.error("initConfig error", e)
         parseConfig(siteConfig, true)?.init()
     }
 }
